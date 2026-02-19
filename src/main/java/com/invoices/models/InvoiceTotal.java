@@ -6,6 +6,7 @@ public class InvoiceTotal {
     private Integer id;
     private String customerName;
     private Double totalPrice;
+    private InvoiceStatus status;
 
     public InvoiceTotal() {}
 
@@ -45,12 +46,21 @@ public class InvoiceTotal {
         return Objects.hash(id, customerName, totalPrice);
     }
 
+    public InvoiceStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(InvoiceStatus status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
-        return "Invoice{" +
+        return "InvoiceTotal{" +
                 "customerName='" + customerName + '\'' +
                 ", id=" + id +
                 ", totalPrice=" + totalPrice +
+                ", status=" + status +
                 '}';
     }
 }

@@ -1,10 +1,12 @@
 package com.invoices.services;
 
 import com.invoices.config.DBConnection;
+import com.invoices.models.InvoiceStatus;
 import com.invoices.models.InvoiceStatusTotals;
 import com.invoices.models.InvoiceTaxSummary;
 import com.invoices.models.InvoiceTotal;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -69,6 +71,7 @@ public class DataRetriever {
                     InvoiceTotal invoice = new InvoiceTotal();
                     invoice.setId(rs.getInt("invoice_id"));
                     invoice.setCustomerName(rs.getString("customer_name"));
+                    invoice.setStatus(InvoiceStatus.valueOf(rs.getString("status")));
                     invoice.setTotalPrice(rs.getDouble("total_price"));
                     invoices.add(invoice);
                 }
@@ -182,5 +185,9 @@ public class DataRetriever {
             throw new RuntimeException(e);
         }
     }
+
+//    public BigDecimal computeWeightedTurnoverTtc() {
+//        return;
+//    }
 
 }
